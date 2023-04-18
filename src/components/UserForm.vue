@@ -1,9 +1,13 @@
 <template>
   <div>
-    <form v-on:submit="saveForm">
-      <input type="text" v-model="name" placeholder="Type here">
-      <btn type="submit">Save</btn>
-    </form>
+    <input type="text" v-model="modifValue">
+    <btn @click="showModal">Add User</btn>
+    <modal v-model:show="modalOpen">
+      <form v-on:submit="saveForm">
+        <input type="text" v-model="name" placeholder="Type here">
+        <btn type="submit">Save</btn>
+      </form>
+    </modal>
   </div>
 </template>
 
@@ -12,7 +16,9 @@
     data() {
       return {
         name: '',
-        user: {}
+        user: {},
+        modalOpen: false,
+        modifValue: ''
       }
     },
     methods: {
@@ -22,6 +28,10 @@
         this.$emit('create', this.user)
         this.name = ''
         this.user = {}
+        this.modalOpen = false
+      },
+      showModal() {
+        this.modalOpen = true
       }
     }
   }

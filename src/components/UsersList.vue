@@ -1,6 +1,6 @@
 <template>
   <div>
-    <table id="customers">
+    <table v-if="users.length > 0" id="customers">
       <thead>
         <th>Id</th>
         <th>Name</th>
@@ -11,11 +11,12 @@
           <td>{{ user.userId }}</td>
           <td>{{ user.userName }}</td>
           <td>
-            <btn type="reset">Remove</btn>
+            <btn @click="$emit('remove', user)" type="reset">Remove</btn>
           </td>
         </tr>
       </tbody>
     </table>
+    <h2 v-else>No Users yet...</h2>
   </div>
 </template>
 

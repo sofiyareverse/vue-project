@@ -2,7 +2,7 @@
   <div>
     <user-form @create="saveForm" />
     <users-parser @create="parseUsers" />
-    <users-list :users="users" />
+    <users-list :users="users" @remove="removeUser" />
   </div>
 </template>
 
@@ -24,15 +24,18 @@
       
     },
     methods: {
-      saveForm: function (e) {
-        e.userId = this.id++
-        this.users.push(e)
+      saveForm: function(newUser) {
+        newUser.userId = this.id++
+        this.users.push(newUser)
       },
-      parseUsers: function (e){
-        e.forEach(element => {
+      parseUsers: function(newUsers) {
+        newUsers.forEach(element => {
           element.userId = this.id++
           this.users.push(element)
         })
+      },
+      removeUser: function(user) {
+        this.users = this.users.filter(u => u.userId !== user.userId)
       }
     }
   }
