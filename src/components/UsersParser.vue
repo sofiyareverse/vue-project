@@ -16,19 +16,18 @@
       }
     },
     methods: {
-      // check error catch
       async parseUsers(){
         try {
-          axios.get(this.apiUrl).then((response) => {
-          response.data.users.forEach(element => {
-            this.users.push({userName: element.firstName, userId: this.id})
+          await axios.get(this.apiUrl).then((response) => {
+            response.data.users.forEach(element => {
+              this.users.push({userName: element.firstName, userId: this.id})
+            })
+            this.$emit('create', this.users)
           })
-          this.$emit('create', this.users)
-          })
-          this.users = []
         } catch(e) {
-          alert('Something was wrong')
+          alert('Something went wrong')
         } finally {
+          this.users = []
           this.isPostLoading = false
         }
       }

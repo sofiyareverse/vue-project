@@ -12,6 +12,7 @@
 
 <style scoped>
 button {
+  width: 138px !important;
   background-color: #04AA6D;
   border: none;
   border-radius: 4px;

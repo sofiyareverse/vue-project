@@ -1,6 +1,5 @@
 <template>
   <div>
-    <input type="text" v-model="modifValue">
     <btn @click="showModal">Add User</btn>
     <modal v-model:show="modalOpen">
       <form v-on:submit="saveForm">
@@ -17,8 +16,7 @@
       return {
         name: '',
         user: {},
-        modalOpen: false,
-        modifValue: ''
+        modalOpen: false
       }
     },
     methods: {
