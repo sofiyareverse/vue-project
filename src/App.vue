@@ -1,11 +1,11 @@
 <template>
   <div>
-    <div class="app__btns">
-      <users-sorter @changed="sortUsers" :users="users" />
+    <div class="app__objects">
+      <users-sorter @changed="sortUsers" @input-change="searchUsers" :users="users" />
       <user-form @create="saveForm" />
       <users-parser @create="parseUsers" />
     </div>
-    <users-list @remove="removeUser" :users="users" />
+    <users-list @remove="removeUser" :users="searchResult.length ? searchResult : users" />
   </div>
 </template>
 
@@ -21,11 +21,9 @@
     data() {
       return {
         id: 0,
-        users: []
+        users: [],
+        searchResult: []
       }
-    },
-    watch: {
-      
     },
     methods: {
       saveForm(newUser) {
@@ -43,6 +41,9 @@
       },
       sortUsers(sortedUsers) {
         this.users = sortedUsers
+      },
+      searchUsers(searchResult) {
+        this.searchResult = searchResult
       }
     }
   }
@@ -61,7 +62,7 @@ div {
   padding: 10px;
 }
 
-.app__btns {
+.app__objects {
   display: flex;
 }
 </style>

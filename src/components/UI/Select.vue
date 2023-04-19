@@ -30,7 +30,6 @@
     },
     methods: {
       changeOptions(e) {
-        console.log(this.options)
         this.$emit("update:modelValue", e.target.value)
       }
     }
@@ -44,7 +43,9 @@
 .select {
   width: 138px !important;
   border-radius: 4px;
-  padding: 14px 0px;
+  border-color: black;
+  border-width: 1px;
+  padding: 14px 12px;
   text-decoration: none;
   margin: 4px 2px;
   cursor: pointer;
