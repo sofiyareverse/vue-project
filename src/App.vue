@@ -5,7 +5,8 @@
       <user-form @create="saveForm" />
       <users-parser @create="parseUsers" />
     </div>
-    <users-list @remove="removeUser" :users="searchResult.length ? searchResult : users" />
+    <users-list @remove="removeUser" :users="paginatedResult" />
+    <users-pagination @paginate="paginateUsers" :users="searchResult.length ? searchResult : users" />
   </div>
 </template>
 
@@ -14,15 +15,17 @@
   import UserForm from './components/UserForm.vue'
   import UsersParser from './components/UsersParser.vue'
   import UsersList from './components/UsersList.vue'
+  import UsersPagination from './components/UsersPagination.vue'
   export default {
     components: {
-      UsersSorter, UserForm, UsersParser, UsersList
+      UsersSorter, UserForm, UsersParser, UsersList, UsersPagination
     },
     data() {
       return {
         id: 0,
         users: [],
-        searchResult: []
+        searchResult: [],
+        paginatedResult: []
       }
     },
     methods: {
@@ -44,6 +47,9 @@
       },
       searchUsers(searchResult) {
         this.searchResult = searchResult
+      },
+      paginateUsers(paginatedResult) {
+        this.paginatedResult = paginatedResult
       }
     }
   }
