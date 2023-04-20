@@ -6,7 +6,7 @@
       <users-parser @create="parseUsers" />
     </div>
     <users-list @remove="removeUser" :users="paginatedResult" />
-    <users-pagination @paginate="paginateUsers" :users="searchResult.length ? searchResult : users" />
+    <users-pagination v-if="users.length" @paginate="paginateUsers" :users="searchResult.length ? searchResult : users" />
   </div>
 </template>
 

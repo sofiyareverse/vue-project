@@ -43,8 +43,9 @@
         this.$emit('paginate', this.paginatedUsers)
       }
     },
-    created() {
+    mounted() {
       this.paginateUsersList()
+      console.log(this.paginatedUsers)
     }
   }
 </script>
