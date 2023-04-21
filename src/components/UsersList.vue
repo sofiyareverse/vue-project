@@ -5,11 +5,15 @@
         <th>Id</th>
         <th>Name</th>
         <th></th>
+        <th></th>
       </thead>
       <tbody>
         <tr v-for="user in users">
           <td>{{ user.userId }}</td>
           <td>{{ user.userName }}</td>
+          <td>
+            <btn @click="$router.push(`/users/${user.userId}`)">See more...</btn>
+          </td>
           <td>
             <btn @click="$emit('remove', user)" type="reset">Remove</btn>
           </td>

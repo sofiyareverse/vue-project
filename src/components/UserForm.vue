@@ -3,7 +3,7 @@
     <btn @click="showModal">Add User</btn>
     <modal v-model:show="modalOpen">
       <form v-on:submit="saveForm">
-        <input type="text" v-model="name" placeholder="Type here">
+        <input v-focus type="text" v-model="name" placeholder="Type here">
         <btn type="submit">Save</btn>
       </form>
     </modal>

@@ -43,7 +43,7 @@
 .select {
   width: 138px !important;
   border-radius: 4px;
-  border-color: black;
+  border-color: transparent;
   border-width: 1px;
   padding: 14px 12px;
   text-decoration: none;

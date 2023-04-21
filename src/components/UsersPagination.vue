@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="wrapper">
     <div class="page__wrapper">
       <div
         v-for="pageNumber in totalPages"
@@ -45,20 +45,24 @@
     },
     mounted() {
       this.paginateUsersList()
-      console.log(this.paginatedUsers)
     }
   }
 </script>
 
 <style scoped>
+.wrapper {
+  display: flex;
+}
 .page__wrapper {
+  margin-left: auto;
   display: flex;
   margin-top: 15px;
 }
 
 .page {
   color: #04AA6D;
-  border: 1px solid black;
+  border-radius: 4px;
+  /* border: 1px solid black; */
   padding: 10px;
   text-decoration: none;
   margin: 4px 2px;
