@@ -33,6 +33,11 @@
         return Math.ceil(this.users.length / this.limit)
       }
     },
+    watch: {
+      users() {
+        this.paginateUsersList()
+      }
+    },
     methods: {
       changePage(pageNumber) {
         this.page = pageNumber

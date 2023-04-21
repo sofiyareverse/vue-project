@@ -28,11 +28,6 @@
         paginatedResult: []
       }
     },
-    watch: {
-      users(newList) {
-        this.searchResult
-      }
-    },
     methods: {
       saveForm(newUser) {
         newUser.userId = this.id++
@@ -46,6 +41,8 @@
       },
       removeUser(user) {
         this.users = this.users.filter(u => u.userId !== user.userId)
+        this.searchResult = this.searchResult.filter(u => u.userId !== user.userId)
+        this.paginatedResult = this.paginatedResult.filter(u => u.userId !== user.userId)
       },
       sortUsers(sortedUsers) {
         this.users = sortedUsers
