@@ -2,12 +2,13 @@
   <div>
     <div class="app__objects">
       <users-search @input-change="searchUsers" :users="users" />
-      <users-sorter :users="paginatedUsers" />
+      <users-sorter :users="$store.state.userModule.paginatedResult" />
       <user-form @create="saveForm" />
       <users-parser @create="parseUsers" />
     </div>
-    <users-list @remove="removeUser" :users="paginatedUsers" />
-    <users-pagination v-if="users.length" @paginate="paginateUsers" :users="searchResult.length ? searchResult : users" />
+    <users-list @remove="removeUser" :users="$store.state.userModule.paginatedResult" />
+    <users-pagination v-if="this.$store.state.userModule.users.length" @paginate="paginateUsers"
+      :users="this.$store.state.userModule.searchResult.length ? this.$store.state.userModule.searchResult : this.$store.state.userModule.users" />
   </div>
 </template>
 
@@ -22,34 +23,23 @@
     components: {
       UsersSearch, UsersSorter, UserForm, UsersParser, UsersList, UsersPagination
     },
-    data() {
-      return {
-        id: 0,
-        users: [],
-        searchResult: [],
-        paginatedUsers: []
-      }
-    },
     methods: {
       saveForm(newUser) {
-        newUser.userId = this.id++
-        this.users.push(newUser)
+        this.$store.dispatch('addUser', newUser)
       },
       parseUsers(newUsers) {
-        newUsers.forEach(element => {
-          element.userId = this.id++
-          this.users.push(element)
+        newUsers.forEach(newUser => {
+          this.$store.dispatch('addUser', newUser)
         })
       },
       removeUser(user) {
-        this.users = this.users.filter(u => u.userId !== user.userId)
-        this.paginatedUsers = this.paginatedUsers.filter(u => u.userId !== user.userId)
+        this.$store.dispatch('removeUser', user)
       },
       searchUsers(searchResult) {
-        this.searchResult = searchResult
+        this.$store.dispatch('searchResult', searchResult)
       },
       paginateUsers(paginatedResult) {
-        this.paginatedUsers = paginatedResult
+        this.$store.dispatch('paginatedResult', paginatedResult)
       }
     }
   }

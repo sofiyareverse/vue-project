@@ -1,8 +1,8 @@
 <template>
   <div class="navbar">
-    <div @click="$router.push('/')">ASD</div>
+    <div @click="$router.push('/')">Vue Proj</div>
     <div class="navbar__btns">
-      <btn @click="$router.push('/')">Main</btn>
+      <btn @click="$router.push('/')">Users Store</btn>
       <btn @click="$router.push('/users')">Users</btn>
     </div>
   </div>
